@@ -184,6 +184,8 @@ interface ContactLinkProps {
 }
 
 const ContactLink: React.FC<ContactLinkProps> = ({ type, value, iconName }) => {
+    const materialIconName = (iconName === 'email' || iconName === 'phone') ? iconName : undefined;
+    
     return (
         <TouchableOpacity 
             style={styles.contactItem}
@@ -192,8 +194,8 @@ const ContactLink: React.FC<ContactLinkProps> = ({ type, value, iconName }) => {
             {type === 'GitHub' && <FontAwesome name="github" size={20} color={PRIMARY_COLOR} style={{marginRight: 8}}/>}
             {type === 'LinkedIn' && <FontAwesome name="linkedin" size={20} color={PRIMARY_COLOR} style={{marginRight: 8}}/>}
             
-            {type !== 'GitHub' && type !== 'LinkedIn' && (
-                <MaterialIcons name={iconName as 'email' | 'phone'} size={20} color={PRIMARY_COLOR} style={{marginRight: 8}}/>
+            {materialIconName && (
+                <MaterialIcons name={materialIconName} size={20} color={PRIMARY_COLOR} style={{marginRight: 8}}/>
             )}
             
             <Text style={styles.contactText}>{value}</Text>
